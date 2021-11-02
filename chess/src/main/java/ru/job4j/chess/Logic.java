@@ -23,8 +23,10 @@ public final class Logic {
     private boolean free(Cell[] steps) throws OccupiedCellException {
         for (Figure figure : figures) {
             if (figure != null) {
-                if (Arrays.asList(steps).contains(figure.position())) {
-                    throw new OccupiedCellException("There are other figures on steps");
+                for (Cell step : steps) {
+                    if (figure != null && figure.position().equals(step)) {
+                        throw new OccupiedCellException("There are other figures on steps");
+                    }
                 }
             }
         }
